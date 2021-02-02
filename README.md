@@ -5,8 +5,7 @@ COMMANDS
 openssl req -x509 -newkey rsa:4096 -keyout CAkey.pem -out CAcert.pem -days 365
 
 2.
-keytool -genkey -alias clienttruststore -keyalg RSA -keystore clienttruststore
-(CN=Filip Kalkan (fi1231ka-s)/Eric Schyllert (mat11esc)/Fredrik Bixo (fr1663bi-s))
+keytool -import -file CAcert.pem -keystore keystore -trustcacerts
 
 3.
 keytool -genkeypair -keyalg rsa -keystore clientkeystore -storepass password
