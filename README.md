@@ -21,3 +21,13 @@ insprired by: https://stackoverflow.com/questions/21297139/how-do-you-sign-a-cer
 
 QUESTION A
 -Create serial number file if it does not exist
+
+QUESTION B
+- You add the -extfile command add an extension section in the certificate.
+
+QUESTION C
+- Extensions are extra certificate fields that can contain pretty much any type of information.
+For example:
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
