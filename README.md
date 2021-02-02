@@ -5,7 +5,7 @@ COMMANDS
 openssl req -x509 -newkey rsa:4096 -keyout CAkey.pem -out CAcert.pem -days 365
 
 2.
-keytool -import -file CAcert.pem -keystore keystore -trustcacerts
+keytool -import -file CAcert.pem -keystore keystore -clienttruststore
 
 3.
 keytool -genkeypair -keyalg rsa -keystore clientkeystore -storepass password
