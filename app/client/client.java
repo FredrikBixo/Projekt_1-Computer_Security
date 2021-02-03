@@ -4,7 +4,7 @@ import javax.net.ssl.*;
 import javax.security.cert.X509Certificate;
 import java.security.KeyStore;
 import java.security.cert.*;
-
+import java.math.*;
 /*
  * This example shows how to set up a key manager to perform client
  * authentication.
@@ -50,6 +50,7 @@ public class client {
                 factory = ctx.getSocketFactory();
             } catch (Exception e) {
                 throw new IOException(e.getMessage());
+		
             }
             SSLSocket socket = (SSLSocket)factory.createSocket(host, port);
             System.out.println("\nsocket before handshake:\n" + socket + "\n");
@@ -65,9 +66,13 @@ public class client {
             SSLSession session = socket.getSession();
             X509Certificate cert = (X509Certificate)session.getPeerCertificateChain()[0];
             String subject = cert.getSubjectDN().getName();
+	    String issuer = cert.getIssuerDN().getName();
+	    BigInteger serialNumber = cert.getSerialNumber();
             System.out.println("certificate name (subject DN field) on certificate received from server:\n" + subject + "\n");
             System.out.println("socket after handshake:\n" + socket + "\n");
             System.out.println("secure connection established\n\n");
+	    System.out.println("The issuer is: " + issuer);
+	    System.out.println("The serial number is " + serialNumber);
 
             BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -92,6 +97,7 @@ public class client {
             socket.close();
         } catch (Exception e) {
             e.printStackTrace();
+	    
         }
     }
 
